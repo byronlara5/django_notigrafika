@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <!-- Meta  -->
+  <meta property="fb:app_id" content="442880842932599" />
+  {% block meta %}
+  {% endblock %}
+   <!-- END Meta  -->
+  <title>Noticias en Grafica</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="{% static 'css/materialize.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="{% static 'css/style.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <!-- END CSS  -->
+
+
+
+</head>
+<body>
+
+  <!-- Load Facebook SDK for JavaScript -->
+  <div id="fb-root"></div>
+  <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId=442880842932599&autoLogAppEvents=1"></script>
+  <script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));</script>
+
+  <!-- Dropdown Structure -->
+<ul id="dropdown1" class="dropdown-content">
+  {% for category in categories %}
+    <li><a href="{{ category.get_absolute_url }}"><i class="material-icons">{{ category.icon }}</i>{{ category.title }}</a></li>
+  {% endfor %}
+</ul>
+
+
+<nav class="nav-extended blue-grey darken-2">
+  <div class="nav-wrapper white-text">
+    <a href="/" class="brand-logo white-text hide-on-small-only"><img src="{% static 'img/logo3.png' %}"></a>
+    <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a data-target="modal1" class="modal-trigger white-text">Buscar<i class="material-icons white-text right">search</i></a></li>
+      <!--<li><a class="white-text" href="badges.html">Contactenos</a></li> -->
+      
+      <!-- Dropdown Trigger -->
+      <li><a class="dropdown-trigger white-text" href="#!" data-target="dropdown1">Secciones<i class="material-icons right white-text">apps</i></a></li>
+    </ul>
+  </div>
+</nav>
+
+
+  <ul class="sidenav" id="mobile-demo">
+  {% for category in categories %}
+    <li><a href="{{ category.get_absolute_url }}"><i class="medium material-icons">{{ category.icon }}</i>{{ category.title }}</a></li>
+  {% endfor %}
+  </ul>
+
+
+<!-- Modal Trigger (Search) -->
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Buscar:</h4>
+      <form method="GET" action="">
+        <div class="input-field col s12">
+          <input type="text" name="q" placeholder="......." value="{{ request.GET.q}}">
+          <input type="submit" value="search">
+        </div>
+      </form>
+    </div>
+  </div>
+<!-- END Modal Trigger (Search) -->
+
+  {% block head %}
+   {% endblock %}
+
+
+  {% block revs %}
+  {% endblock %}
+   
+<!--   News Section   -->
+  <div class="row">
+      
+  <div class="col s12 m9">
+   <!--   here goes the content   -->
+
+   {% block content %}
+   {% endblock %}
+
+   <!--  here goes the content   -->
+
+  </div>
+
+  <div class="col s12 m3">
+    <h6>Te puede interesar</h6>
+     <div class="divider"></div>
+      {% block revside %}
+      {% endblock %}
+  </div>
+
+
+  </div>
+
+<div class="row">
+  <div class="col s12 m12">
+    {% block pagination %}
+    {% endblock %}
+  </div>
+</div>
+
+  <footer class="page-footer blue-grey darken-2">
+    <div class="container">
+      <div class="row">
+        <div class="col l6 s12">
+          <h5 class="white-text">Noticias en Grafica</h5>
+          <p class="grey-text text-lighten-4">Noticias en grafica es un portal de noticias basado en Republica Dominicana, si desea contactarse con nosotros hagalo atravez del correo: noticiasengrafica@gmail.com</p>
+
+
+        </div>
+        <div class="col l3 s12">
+          <h5 class="white-text">Redes</h5>
+          <ul>
+            <li><a class="white-text" href="#!">Facebook</a></li>
+            <li><a class="white-text" href="#!">Instagram</a></li>
+            <li><a class="white-text" href="#!">Twitter</a></li>
+            <li><a class="white-text" href="{% url 'privacy' %}">Acerca</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <div class="container left">
+      Made by <a class="brown-text text-lighten-3">Byron Lara</a>
+      </div>
+
+      <div class="container right">
+      Copyright © 2019 Noticias En Grafica All Rights Reserved. <a class="brown-text text-lighten-3" href="{% url 'terms-of-use' %}">User Agreement</a>, <a class="brown-text text-lighten-3" href="{% url 'privacy' %}">Privacy</a>.
+      </div>
+    </div>
+  </footer>
+
+
+  <!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="{% static 'js/materialize.js' %}"></script>
+  <script src="{% static 'js/init.js' %}"></script>
+
+  </body>
+</html>

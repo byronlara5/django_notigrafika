@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+
+<meta property="og:url"                content="http://www.noticiasengrafica.com{{ entries.get_absolute_url }}" />
+<meta property="og:type"               content="article" />
+<meta property="og:title"              content="{{ entries.title }}" />
+<meta property="og:description"        content="{{ entries.content | truncatechars_html:45 |striptags }}" />
+<meta property="og:image"              content="http://www.noticiasengrafica.com{{ entries.picture.url }}" />
+
+
+{% endblock %}
+
+
+{% block head %}
+<!--   Parallax   -->
+ <div id="index-banner" class="parallax-container">
+    <div class="section no-pad-bot">
+      <div class="container">
+        <br><br>
+        <div class="row center">
+          <h3 style="padding-top: 30px" class="header col s12 title-image">{{ entries.title }}</h3>
+        </div>
+        <br><br>
+      </div>
+    </div>
+    <div style="opacity: 0.9;" class="parallax"><img src="{{ entries.picture.url }}" alt="Unsplashed background img 1"></div>
+  </div>
+ <!-- END  Parallax   -->     
+{% endblock %}   
+
+    
+  {% block content %}
+    <div class="col s12 m12">
+      <div class="card hoverable">
+        <ul class="collection">
+        <li class="collection-item avatar">
+          <i class="material-icons circle">account_circle</i>
+          <span style="font-size: 20px" class="title">Sección: </span>
+          <span style="font-size: 18px" class="title">{{ entries.category }}</span>
+          <span class="title secondary-content">{{ entries.publication_date | date:"d-m-Y" }}</span>
+          <p>Administrador</p>
+        </li>
+        <div class="card-content">
+          {{ entries.content | safe }}
+        </div>
+
+        <div class="card-action">
+          <span style="font-size: 20px" class="title">Tags:  </span>
+              {% for tag in entries.tags.all %}
+                <div class="chip"><a href="{{ tag.get_absolute_url }}">{{ tag }}</a></div>
+              {% endfor %}
+        </div>
+
+        <div class="card-action">
+          <span style="font-size: 20px" class="title">Compartir:  </span>
+
+         <div class="fb-like" data-href="http://www.noticiasengrafica.com{{ entries.get_absolute_url }}" data-width="" data-layout="standard" data-action="like" data-size="large" data-show-faces="true" data-share="true"></div>
+
+          <div class="fb-share-button" data-href="http://www.noticiasengrafica.com{{ entries.get_absolute_url }}" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
+    
+        </div>
+
+        <div class="card-action">
+          <span style="font-size: 20px; position: absolute;" class="title">Comenta:  </span>
+
+          <!-- Comentarios Facebook -->
+          <div style="padding-top: 25px" class="fb-comments" data-href="http://www.noticiasengrafica.com{{ entries.get_absolute_url }}" data-width="1000" data-numposts="10"></div>
+          <!-- END Comentarios Facebook --> 
+        </div>
+
+      </div>
+    </div>
+  {% endblock %}
+
+{% block revside %}
+  {% for revside in revs %}
+    <div class="col s12 m12">
+      <div class="card">
+        <div class="card-image">
+          {% if revside.picture %}
+            <a href="{{ revside.site_url }}"><img src="{{ revside.picture.url }}"></a>
+          {% endif %}
+        </div>
+        {% if revside.content %}
+        <div class="card-content">
+          <div class="video-container">
+            {{ revside.content | safe }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+{% endblock %}

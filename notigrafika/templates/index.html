@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+
+
+{% block head %}
+<!-- Front page -->
+<!-- Slider -->
+    <div class="slider">
+    <ul class="slides">
+
+      {% for bnew in breakingnews %}
+      <li>
+        <a href="{{ bnew.get_absolute_url }}">
+        <img style="opacity: 0.9" src="{{ bnew.picture.url }}"> <!-- random image -->
+        </a>
+        <div class="caption right-align">
+          <h3><a style="text-decoration: none; color: white;" class="title-image" href="{{ bnew.get_absolute_url }}">{{ bnew.title }}</a></h3>
+          <h5 class="light grey-text text-lighten-3">{{ bnew.section }}</h5>
+        </div>
+      </li>
+      {% endfor %}
+
+      </ul>
+  </div>
+<!-- END Slider -->
+<!-- Front page -->
+{% endblock %}
+
+
+{% block revs %}
+<!--   Revs Section   -->
+<div class="row">
+
+{% for revcenter in revscenter %}
+<div class="col s12 m6">
+    <div class="card">
+        <div style="max-width: 300px;" class="card-image">
+          {% if revcenter.picture %}
+            <a href="{{ revcenter.site_url }}"><img src="{{ revcenter.picture.url }}"></a>
+          {% endif %}
+        </div>
+        {% if revcenter.content %}
+        <div class="card-content">
+          <div class="video-container">
+            {{ revcenter.content | safe }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+  </div>
+{% endfor %}
+
+</div>
+<!--   END Revs Section   -->
+{% endblock %}
+
+
+
+
+
+    
+{% block content %}
+    <h5>Lo último</h5>
+     <div class="divider"></div>
+
+  {% for entry in entriesp %}
+    <div class="col s12 m6">
+      <div class="card hoverable">
+        <div class="card-image">
+          <a href="{{ entry.get_absolute_url }}">
+          <img src="{{ entry.picture.url }}">
+          </a>
+          <a href="{{ entry.get_absolute_url }}">
+          <span class="card-title">{{ entry.title | truncatechars_html:45 }}</span>
+          </a>
+          <a class="btn-floating halfway-fab waves-effect waves-light red tooltipped" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent('http://www.noticiasengrafica.com{{ entry.get_absolute_url }}'),'facebook-share-dialog','width=626,height=436'); return false;" data-tooltip="Compartir"><i class="material-icons">share</i></a>
+        </div>
+        <div class="card-content">
+          {{ entry.content | safe | truncatechars_html:200 }}
+        </div>
+        <div class="card-action">
+          <a href="{{ entry.get_absolute_url }}">Leer mas</a>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+{% endblock %}
+
+
+{% block revside %}
+  {% for revside in revs %}
+    <div class="col s12 m12">
+      <div class="card">
+        <div class="card-image">
+          {% if revside.picture %}
+            <a href="{{ revside.site_url }}"><img src="{{ revside.picture.url }}"></a>
+          {% endif %}
+        </div>
+        {% if revside.content %}
+        <div class="card-content">
+          <div class="video-container">
+            {{ revside.content | safe }}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+{% endblock %}
+
+
+{% block pagination %}
+  <!-- Pagination Section   -->
+  <ul class="pagination center-align">
+    {% if entriesp.has_previous %}
+      <a href="?page={{ entriesp.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="waves-effect waves-light btn-large"><i class="material-icons left">arrow_back</i>Atras</a>
+    {% endif %}
+
+    {% if entriesp.has_next %}
+    <a href="?page={{ entriesp.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}" class="waves-effect waves-light btn-large"><i class="material-icons left">add</i>Cargar mas</a>
+    {% endif %}
+  </ul>
+ <!-- END  Pagination Section   -->
+{% endblock %}

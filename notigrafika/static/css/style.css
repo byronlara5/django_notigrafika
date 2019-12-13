@@ -1,0 +1,248 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+body {
+  background-color: #f1f1f1;
+}
+
+
+.parallax-container {
+  min-height: 600px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+
+#img-custom-circle {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  border-style: solid;
+  border-color: white;
+  border-width: 3px;
+  z-index: 1;
+  left: 30%;
+  top: 60%;
+
+}
+
+.truncate-two {
+  margin: 5px 0;
+  width: 500px;
+  overflow: hidden;
+  height: 150px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.truncate-two p img{ 
+  display:none; 
+}
+
+.trucante-two p:first-child img{ 
+  display:none; 
+}
+
+
+/* Title with pictures (Slider and Parallax) */
+  .title-image{
+    font-size: 4rem;
+    font-weight: 500;
+    line-height: 4rem;
+    display: block;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: #fff;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: transparent;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.8);
+}
+
+@media only screen and (max-width: 780px) {
+  .title-image {
+    font-size: 3.2rem;
+    line-height: 3.2rem;
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 481px) and (max-width: 560px) {
+  .title-image {
+    font-size: 2.30rem;
+    line-height: 2.30rem;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .title-image {
+    font-size: 2.20rem;
+    line-height: 2.20rem;
+  }
+}
+
+
+
+
+/* Title for Cards (Index/Section/Tag/Search) */
+.card .card-image .card-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #fff;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  max-width: 100%;
+  padding: 24px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background-color: transparent;
+  text-shadow: 1px 1px 1px rgba(0,0,0,.8);
+}
+
+@media only screen and (max-width: 850px) {
+  .card .card-image .card-title {
+    font-size: 1.3rem;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 700px) {
+  .card .card-image .card-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card .card-image .card-title {
+    font-size: 2.20rem;
+  }
+}
+
+@media only screen and (min-width: 359px) and (max-width: 470px) {
+  .card .card-image .card-title {
+    font-size: 1.80rem;
+  }
+}
+
+
+/* Content (P) for Cards (Index/Section/Tag/Search) */
+.card .card-content p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+@media only screen and (max-width: 850px) {
+  .card .card-content p {
+    font-size: 1.0rem;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 700px) {
+  .card .card-content p {
+    font-size: 0.90rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .card .card-content p {
+    font-size: 1.2rem;
+  }
+}
+
+@media only screen and (min-width: 359px) and (max-width: 470px) {
+  .card .card-content p {
+    font-size: 0.95rem;
+  }
+}
+
+
+
+/* mod for the secondary content: Date */
+.collection .collection-item.avatar .secondary-content {
+  font-size: 1.60rem;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}
+
+@media only screen and (max-width: 780px) {
+  .collection .collection-item.avatar .secondary-content {
+    font-size: 1.30rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .collection .collection-item.avatar .secondary-content {
+    font-size: 1.20rem;
+  }
+}
+
+@media only screen and (min-width: 359px) and (max-width: 470px) {
+  .collection .collection-item.avatar .secondary-content {
+    font-size: 0.95rem;
+  }
+}
+
+
+
+/* mod for the nav bar / logo */
+nav.nav-extended .nav-wrapper {
+  min-height: 133px;
+  height: auto;
+}
+
+nav ul a {
+  -webkit-transition: background-color .3s;
+  transition: background-color .3s;
+  font-size: 1.3rem;
+  color: #fff;
+  display: inline-block;
+  padding: 30px;
+  cursor: pointer;
+}
